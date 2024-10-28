@@ -1,0 +1,14 @@
+import matplotlib.pyplot as plt
+from gcc import *
+from ran import *
+# Сгенерируем случайные числа с помощью ДПСЧ
+random_numbers_own = [generator.next() for _ in range(1000)]
+
+# Сгенерируем случайные числа с помощью библиотечной функции random
+random_numbers_lib = [random.randint(0, 2**8) for _ in range(1000)]
+
+# Построим гистограммы для обоих последовательностей
+plt.hist(random_numbers_own, bins=50, alpha=0.5, label='ДПСЧ (собственный)')
+plt.hist(random_numbers_lib, bins=50, alpha=0.5, label='ДПСЧ (библиотечный)')
+plt.legend()
+plt.show()
