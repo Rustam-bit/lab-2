@@ -1,0 +1,24 @@
+from gcc import LCG
+import random
+import time
+
+# Сгенерируем случайные числа с помощью ДПСЧ
+generator = LCG(seed=int(time.time()), a=1664525, c=1013904223, m=2 ** 8)
+random_numbers_own = [generator.next() for _ in range(1000)]
+
+# Сгенерируем случайные числа с помощью библиотечной функции random
+random_numbers_lib = [random.randint(0, 2 ** 8) for _ in range(1000)]
+
+from scipy.stats import chisquare
+
+# Оценка равномерности распределения для вашего ДПСЧ
+chi_own, p_own = chisquare(random_numbers_own)
+
+# Оценка равномерности распределения для библиотечного ДПСЧ
+chi_lib, p_lib = chisquare(random_numbers_lib)
+
+print("Тест хи-квадрат для собственного ДПСЧ:")
+print(f"Статистика: {chi_own}, p-value: {p_own}")
+print()
+print("Тест хи-квадрат для библиотечного ДПСЧ:")
+print(f"Статистика: {chi_lib}, p-value: {p_lib}")
