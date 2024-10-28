@@ -1,0 +1,5 @@
+import random
+
+# Генерируем несколько случайных чисел с помощью библиотечной функции random
+for _ in range(10):
+    print(random.randint(0,2**32))
