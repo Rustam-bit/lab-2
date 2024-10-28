@@ -1,0 +1,19 @@
+import time
+class LCG:
+    def __init__(self, seed, a, c, m):
+        self.state = seed
+        self.a = a
+        self.c = c
+        self.m = m
+
+    def next(self):
+        self.state = (self.a * self.state + self.c) % self.m
+        return self.state
+
+
+
+generator = LCG(seed=int (time.time()), a=1664525, c=1013904223, m=2**8)
+for _ in range(10):
+    print(generator.next())
+
+
